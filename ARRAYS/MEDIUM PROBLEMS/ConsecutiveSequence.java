@@ -1,5 +1,4 @@
 import java.util.Arrays;
-import java.util.LinkedHashSet;
 
 public class ConsecutiveSequence {
 
@@ -10,9 +9,9 @@ public class ConsecutiveSequence {
     // we are not using any extra space so space complexity wouldd be O(1).
     public static int findLongestSequenceBrute(int[] arr) {
         int longestSequenceLength = 1;
-        int count = 0; // Initialize count as 1 for the first element
+        int count = 0;
 
-        for (int i = 0; i < arr.length; i++) { // Loop until the second last element
+        for (int i = 0; i < arr.length; i++) {
             int value = arr[i];
 
             for (int j = 0; j < arr.length; j++) {
@@ -32,7 +31,7 @@ public class ConsecutiveSequence {
     // and then looking for the consecutive sequence. This approach will take TC
     // O(nlogn) and space complexity O(1).
     public static int findLongestSequenceBetter(int[] arr) {
-        Arrays.sort(arr); // First sort the given array
+        Arrays.sort(arr);
 
         int lastSmaller = Integer.MIN_VALUE;
         int count = 0;
