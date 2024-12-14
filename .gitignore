@@ -5,3 +5,5 @@ Problems CheatSheet.docx
 # Ignore Visual Studio Code settings and tasks files
 .vscode/settings.json
 .vscode/tasks.json
+
+FleetAccessToken.txt

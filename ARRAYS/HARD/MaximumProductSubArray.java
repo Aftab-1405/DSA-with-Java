@@ -24,6 +24,7 @@ public class MaximumProductSubArray {
     // Approach 02 : (Optimal) This is an optimal solution where I am using a single
     // loop so thereby the TC will be O(n) and since we are not using extra space
     // the SC would be O(1) only.
+
     public static int findMaximumProductSubArrayOptimal(int[] nums) {
         int maxProd = Integer.MIN_VALUE;
         int pre = 1;
