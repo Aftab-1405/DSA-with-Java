@@ -1,4 +1,4 @@
-package BINARY;
+package BINARY.EASY;
 
 public class SearchInsertPosition {
 
