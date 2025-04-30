@@ -2,23 +2,7 @@ package LINKEDLIST.SINGLYLINKEDLIST;
 
 import java.util.Stack;
 
-class Node {
-    int data;
-    Node next;
-
-    public Node(int data) {
-        this.data = data;
-        this.next = null;
-    }
-
-    // Add toString() method to properly print the node
-    @Override
-    public String toString() {
-        return String.valueOf(this.data);
-    }
-}
-
-// Class to reverse a singly linked list using a stack (brute force approach)
+// Class to reverse a singly linked list using different approaches
 public class ReverseSLL {
 
     /**
@@ -27,7 +11,7 @@ public class ReverseSLL {
      * @param head The head node of the original linked list.
      * @return The new head node of the reversed linked list.
      */
-    public static Node reverse(Node head) {
+    public static Node reverseBrute(Node head) {
         // If the list is empty, return null
         if (head == null) {
             return null;
@@ -53,6 +37,32 @@ public class ReverseSLL {
         return newHead;
     }
 
+    /**
+     * Reverses a singly linked list using the optimized in-place approach.
+     * This method uses constant extra space O(1) compared to stack-based approach.
+     * 
+     * @param head The head node of the original linked list.
+     * @return The new head node of the reversed linked list.
+     * @throws NullPointerException if head is null
+     */
+    public static Node reverseOptimized(Node head) {
+        if (head == null || head.next == null) {
+            return head;
+        }
+        Node prev = null;
+        Node current = head;
+        Node next = null;
+
+        while (current != null) {
+            next = current.next;
+            current.next = prev;
+            prev = current;
+            current = next;
+        }
+
+        return prev;
+    }
+
     public static void main(String[] args) {
         // Example usage:
 
@@ -66,7 +76,7 @@ public class ReverseSLL {
         second.next = third;
 
         // Reverse the linked list using the reverse method
-        head = reverse(head);
+        head = reverseOptimized(head);
 
         // Print the reversed linked list: should output 30 20 10
         Node temp = head;
