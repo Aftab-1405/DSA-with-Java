@@ -63,6 +63,27 @@ public class ReverseSLL {
         return prev;
     }
 
+    /**
+     * Reverses a singly linked list using recursion.
+     * 
+     * @param head The head node of the original linked list.
+     * @return The new head node of the reversed linked list.
+     */
+    public static Node reverseRecursive(Node head) {
+        // Base case: if the list is empty or has only one node, return the head
+        if (head == null || head.next == null) {
+            return head;
+        }
+        // Recursively reverse the rest of the list
+        Node newHead = reverseRecursive(head.next);
+        // Set the next node's next pointer to point to the current node
+        Node front = head.next;
+        // Set the current node's next pointer to null
+        front.next = head;
+        head.next = null;
+        return newHead;
+    }
+
     public static void main(String[] args) {
         // Example usage:
 
@@ -76,7 +97,7 @@ public class ReverseSLL {
         second.next = third;
 
         // Reverse the linked list using the reverse method
-        head = reverseOptimized(head);
+        head = reverseRecursive(head);
 
         // Print the reversed linked list: should output 30 20 10
         Node temp = head;
