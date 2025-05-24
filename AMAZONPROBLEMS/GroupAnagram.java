@@ -33,9 +33,50 @@ public class GroupAnagram {
         return new ArrayList<>(map.values());
     }
 
+    private static String getFrequencyKey(String str) {
+        // Step 1: Create an array to count frequency of each character
+        int[] frequency = new int[26]; // Assuming only lowercase letters a-z
+
+        // Step 2: Count the frequency of each character in the string
+        for (char c : str.toCharArray()) {
+            frequency[c - 'a']++;
+        }
+
+        // Step 3: Build a key from the frequency array
+        StringBuilder keyBuilder = new StringBuilder();
+        char c = 'a';
+
+        // Step 4: Append each character and its frequency to the key
+        for (int i = 0; i < frequency.length; i++) {
+            // Append the character and its frequency to the key
+            keyBuilder.append((char) (i + 'a'));
+            keyBuilder.append(frequency[i]);
+            c++;
+        }
+
+        return keyBuilder.toString();
+    }
+
+    public static List<List<String>> groupAnagramsOptimal(String[] strs) {
+        // Step 1: Create a HashMap to group anagrams
+        Map<String, List<String>> map = new HashMap<>();
+
+        for (String str : strs) {
+            String key = getFrequencyKey(str);
+            // Step 2: Check if the key exists. If not, create a new list
+            if (!map.containsKey(key)) {
+                map.put(key, new ArrayList<>());
+            }
+            // Step 3: Add the string to the corresponding list
+            map.get(key).add(str);
+        }
+        // Step 4: Return the values of the map as an ArrayList
+        return new ArrayList<>(map.values());
+    }
+
     public static void main(String[] args) {
 
         String[] arr = { "eat", "tea", "tan", "ate", "nat", "bat" };
-        System.out.println(groupAnagramsBruteList(arr));
+        System.out.println(groupAnagramsOptimal(arr));
     }
 }
